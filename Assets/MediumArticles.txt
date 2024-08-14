@@ -1,0 +1,12 @@
+#Unity #Unity3d #UnityGameDev #UnityGameDevelopment #GameDev #Technology #TechJourney #DevLog #DevJourney 
+
+---------------------------------------------------------------------------------------------------------
+MODEL VIEWER AR DEVELOPMENT LIST: https://medium.com/@jordantkay/list/dynamicore-662cc71c1f53
+---------------------------------------------------------------------------------------------------------
+
+1. Understanding the Concepts Behind DynamiCore's AI System 	---		---		---		---	| written	| August 19th	| https://medium.com/@jordantkay/understanding-the-concepts-behind-dynamicores-ai-system-84bc0b89b395
+2. Choosing Between Abstract Classes and Interfaces: A Deep Dive for DynamiCore 	---	---	| written	| August 20th	| https://medium.com/@jordantkay/choosing-between-abstract-classes-and-interfaces-a-deep-dive-for-dynamicore-072ed50fe524
+3. Building a Flexible State Machine System in Unity: A Guide to Creating Dynamic AI 	---	| written	| August 21st	| https://medium.com/@jordantkay/creating-a-modular-patrol-system-in-unity-c414e478be6f
+4. Creating a Modular Patrol System in Unity	---		---		---		---		---		---	| written	| August 22nd	| https://medium.com/@jordantkay/building-a-flexible-state-machine-system-in-unity-a-guide-to-creating-dynamic-ai-83c53de03212
+
+
