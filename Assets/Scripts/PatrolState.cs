@@ -4,8 +4,13 @@ using UnityEngine.AI;
 
 public class PatrolState : State
 {
+
     private PatrolManager patrolManager;
     private NavMeshAgent navMeshAgent;
+
+    private float waitTime;
+    private bool waiting;
+    private float waitTimer;
 
     public PatrolState(GameObject owner, PatrolManager patrolMgr) : base(owner)
     {
@@ -27,14 +32,21 @@ public class PatrolState : State
 
     public override void Update()
     {
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+        if (waiting)
         {
-            PatrolZone patrolZone = patrolManager.GetAssignedPatrolZone(owner);
+            waitTimer += Time.deltaTime;
+            if (waitTimer >= waitTime)
+            {
+                waiting = false;
 
-            if (patrolZone != null)
-                MoveToNextPatrolPoint(patrolZone);
-            //else
-                //Debug.Log("No Patrol Zones Assigned");
+                PatrolZone patrolZone = patrolManager.GetAssignedPatrolZone(owner);
+                if (patrolZone != null)
+                    MoveToNextPatrolPoint(patrolZone);
+            }
+        }
+        else if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+        {
+            StartWaiting();
         }
     }
 
@@ -50,11 +62,18 @@ public class PatrolState : State
         if (nextPoint != null)
         {
             navMeshAgent.SetDestination(nextPoint.Position);
-            Debug.Log($"Moving to patrol point at: {nextPoint.Position}");
+            waitTime = nextPoint.WaitTime; //Store the wait time for the current point
+            //Debug.Log($"Moving to patrol point at: {nextPoint.Position}");
         }
         else
         {
             Debug.Log("No Patrol point available");
         }
+    }
+
+    private void StartWaiting()
+    {
+        waiting = true;
+        waitTimer = 0f;
     }
 }

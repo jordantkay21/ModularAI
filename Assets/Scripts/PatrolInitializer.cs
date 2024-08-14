@@ -4,16 +4,16 @@ using UnityEngine;
 public class PatrolInitializer : MonoBehaviour
 {
     public GameObject aiAgent; //Reference to your AI Agent GameObject
-    public List<GameObject> patrolPointsGameobjects; //Drag PatrolPoint1, PatrolPoint2, etc. into this list in the Inspector
+    public List<PatrolPointSetting> patrolPointsSettings; //Drag PatrolPoint1, PatrolPoint2, etc. into this list in the Inspector
 
     [System.Obsolete]
     private void Start()
     {
         //Convert GameObjects to PatrolPoints
         List<PatrolPoint> patrolPoints = new List<PatrolPoint>();
-        foreach (GameObject point in patrolPointsGameobjects)
+        foreach (PatrolPointSetting setting in patrolPointsSettings)
         {
-            patrolPoints.Add(new PatrolPoint(point.transform.position, 2f));
+            patrolPoints.Add(new PatrolPoint(setting.patrolPoint.transform.position,setting.waitTime));
         }
 
         //Create the PatrolZone
