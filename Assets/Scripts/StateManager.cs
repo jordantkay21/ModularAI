@@ -4,14 +4,13 @@ public class StateManager : MonoBehaviour
 {
     private State currentState;
 
-    // Initialize the StateManager with the initial state
-    public void Initialized(State startingState)
+    private void Start()
     {
-        currentState = startingState;
-        currentState.Enter(); //Enter the initial state
+        PatrolManager patrolManager = FindObjectOfType<PatrolManager>();
+        PatrolState patrolState = new PatrolState(gameObject, patrolManager);
+        Initialized(patrolState); //Start with Patrolstate
     }
-
-    //Update is called once per frame
+    
     private void Update()
     {
         if (currentState != null)
@@ -19,6 +18,14 @@ public class StateManager : MonoBehaviour
             currentState.Update(); //Update the current state
         }
     }
+
+    // Initialize the StateManager with the initial state
+    public void Initialized(State startingState)
+    {
+        currentState = startingState;
+        currentState.Enter(); //Enter the initial state
+    }
+
 
     //Change  the current state to a new state
     public void ChangeState(State newState)
